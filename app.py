@@ -123,8 +123,8 @@ if client_file and your_file:
     st.markdown(f"### Matching Product {current_idx + 1} of {total}")
 
     client_product = client_df.iloc[current_idx]
-    client_name = client_product['name']
-    client_article_number = str(client_product.get('article_number', '')).strip()
+    client_name = client_product['Artikelbezeichnung']
+    # client_article_number = str(client_product.get('article_number', '')).strip()
 
     col1, col2 = st.columns(2)
 
@@ -132,7 +132,7 @@ if client_file and your_file:
     with col1:
         st.subheader("Client Product")
         st.write(f"**Name:** {client_name}")
-        st.write(f"**Client Article Number:** {client_article_number}")
+        # st.write(f"**Client Article Number:** {client_article_number}")
 
     # Right: Matching interface
     with col2:
