@@ -83,6 +83,7 @@ def generate_embeddings(texts):
     embeddings = model.encode(texts, convert_to_tensor=True)
     embeddings = torch.nn.functional.normalize(embeddings, p=2, dim=1)
     return embeddings.cpu().numpy()
+
 def get_top_matches(client_product, your_df, top_n=5, source_col='name'):
     import re, torch, difflib
     from sentence_transformers import SentenceTransformer
@@ -123,7 +124,8 @@ def get_top_matches(client_product, your_df, top_n=5, source_col='name'):
 
         results.append({
             'name': your_df.iloc[idx][source_col],
-            'price': your_df.iloc[idx].get('preis', 'N/A'),
+            'price': your_df.iloc[idx].get('Preis', 'N/A'),
+            'article_number': your_df.iloc[idx].get('artikelnr.', 'N/A'),
             'combined_score': round(combined, 3)
         })
     return sorted(results, key=lambda x: -x['combined_score'])
